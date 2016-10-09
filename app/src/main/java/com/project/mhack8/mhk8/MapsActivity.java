@@ -214,7 +214,6 @@ public class MapsActivity extends CommonActivity implements OnMapReadyCallback, 
                         }
                     }
                     polylinePaths.add(mMap.addPolyline(polylineOptions));
-                    polylineOptions=null;
                     info[0] = route.startAddress;
                     info[1] = route.endAddress;
                     Log.v(info[0],info[1]);
@@ -225,7 +224,6 @@ public class MapsActivity extends CommonActivity implements OnMapReadyCallback, 
                             Intent intent = new Intent(MapsActivity.this, PostActivity.class);
                             intent.putExtra("info", info);
                             startActivity(intent);
-
                         }
                     });
         }

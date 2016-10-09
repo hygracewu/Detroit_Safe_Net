@@ -29,6 +29,7 @@ public class PostActivity extends CommonActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         dbList= new ArrayList<DatabaseModel>();
@@ -53,11 +54,11 @@ public class PostActivity extends CommonActivity{
         etTime = (TextView)findViewById(R.id.etTime);
 
 
-        //etName.setText(s);
-        //etDeparture.setText(departure);
-        //etDestination.setText(destination);
-        //etDate.setText(date);
-        //etTime.setText(time);
+        etName.setText(name);
+        etDeparture.setText(departure);
+        etDestination.setText(destination);
+        etDate.setText(date);
+        etTime.setText(time);
 
         btngetdata =(Button)findViewById(R.id.btngetdata);
         btngetdata.setOnClickListener(new View.OnClickListener() {
