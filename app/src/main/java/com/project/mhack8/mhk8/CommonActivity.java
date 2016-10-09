@@ -46,6 +46,9 @@ public class CommonActivity extends AppCompatActivity {
             case R.id.sProfile:
                 changeScheme(4);
                 return true;
+            case R.id.sPost:
+                changeScheme(5);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -80,12 +83,22 @@ public class CommonActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
 
+            case 2: intent = new Intent(this, ListActivity.class);
+                intent.putExtra("page id", PAGE_ID);
+                startActivity(intent);
+                break;
+
             case 3: intent = new Intent(this, MapsActivity.class);
                     intent.putExtra("page id", PAGE_ID);
                     startActivity(intent);
                     break;
 
             case 4: intent = new Intent(this, ProfileActivity.class);
+                intent.putExtra("page id", PAGE_ID);
+                startActivity(intent);
+                break;
+
+            case 5: intent = new Intent(this, PostActivity.class);
                 intent.putExtra("page id", PAGE_ID);
                 startActivity(intent);
                 break;

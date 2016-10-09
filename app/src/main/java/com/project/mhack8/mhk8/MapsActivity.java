@@ -72,7 +72,6 @@ public class MapsActivity extends CommonActivity implements OnMapReadyCallback, 
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
-        registerBtn = (ImageView) findViewById(R.id.register);
         modeSpinner = (Spinner) findViewById(R.id.modeSpinner);
         String[] mode_list = {"driving", "walking", "bicycling", "transit"};
 
@@ -217,15 +216,6 @@ public class MapsActivity extends CommonActivity implements OnMapReadyCallback, 
                     info[0] = route.startAddress;
                     info[1] = route.endAddress;
                     Log.v(info[0],info[1]);
-
-                    registerBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(MapsActivity.this, PostActivity.class);
-                            intent.putExtra("info", info);
-                            startActivity(intent);
-                        }
-                    });
         }
     }
 }

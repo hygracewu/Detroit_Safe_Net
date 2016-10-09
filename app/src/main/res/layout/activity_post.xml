@@ -20,7 +20,7 @@ android:orientation="vertical">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username: "/>
-    <TextView
+    <EditText
         android:id="@+id/etName"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
@@ -35,7 +35,7 @@ android:orientation="vertical">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Departure: "/>
-    <TextView
+    <EditText
         android:id="@+id/etDeparture"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
@@ -50,7 +50,7 @@ android:orientation="vertical">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Destination: "/>
-    <TextView
+    <EditText
         android:id="@+id/etDestination"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
@@ -65,7 +65,7 @@ android:orientation="vertical">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date: "/>
-    <TextView
+    <EditText
         android:id="@+id/etDate"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
@@ -80,7 +80,7 @@ android:orientation="vertical">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Time: "/>
-    <TextView
+    <EditText
         android:id="@+id/etTime"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"/>
@@ -99,20 +99,6 @@ android:orientation="vertical">
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"/>
 
-</LinearLayout>
-
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:orientation="horizontal">
-    <Button
-        android:id="@+id/btncan"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Cancel"
-        android:textColor="#ffffff"
-        android:background="@color/colorPrimary"/>
 </LinearLayout>
 
 <LinearLayout

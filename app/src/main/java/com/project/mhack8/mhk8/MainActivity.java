@@ -45,6 +45,7 @@ public class MainActivity extends CommonActivity{
         setButton(R.id.button2, 2);
         setButton(R.id.button3, 3);
         setButton(R.id.button4, 4);
+        setButton(R.id.button5, 5);
 
     }
 
