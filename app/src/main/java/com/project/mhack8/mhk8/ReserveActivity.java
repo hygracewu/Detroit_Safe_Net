@@ -21,7 +21,7 @@ public class ReserveActivity extends CommonActivity {
     private RecyclerView recyclerView;
     private ReservesAdapter rAdapter;
     private int prevPageId;
-    public String []str = new String[5];
+    public String []str = new String[6];
     //private DBHandler dbHandler;
 
     @Override
@@ -54,6 +54,7 @@ public class ReserveActivity extends CommonActivity {
                 str[2] = reserve.getDestination();
                 str[3] = reserve.getDate();
                 str[4] = reserve.getTime();
+                str[5] = String.valueOf(position);
 
                 Toast.makeText(getApplicationContext(), reserve.getPath() + " is selected!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ReserveActivity.this, ResponseActivity.class);

@@ -47,6 +47,7 @@ public class ResponseActivity extends CommonActivity {
         tvdestination.setText("destination: "+info[2]);
         tvdate.setText("date: "+info[3]);
         tvtime.setText("time: "+info[4]);
+        int position = Integer.valueOf(info[5]);
 
         /*
         helpher = new DatabaseHelper(this);
