@@ -43,7 +43,7 @@ android:orientation="vertical">
         android:id="@+id/btnConfirm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Confirm Registration"
+        android:text="Response"
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"/>
 </LinearLayout>
