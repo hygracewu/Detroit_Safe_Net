@@ -18,11 +18,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.DatabaseModel;
+
 public class MainActivity extends CommonActivity{
 
-    private ArrayList<Reservation> reservesList = new ArrayList<>();
+    private ArrayList<DatabaseModel> reservesList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private ReservesAdapter rAdapter;
+    private RecyclerAdapter rAdapter;
     private  int prevPageId=0;
     //private DBHandler dbHandler;
 

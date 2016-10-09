@@ -81,7 +81,7 @@ public class PostActivity extends CommonActivity{
                 etTime.setText("");
 
                 Toast.makeText(PostActivity.this, "Request Posted", Toast.LENGTH_LONG);
-
+                // back to map
             }
         });
 

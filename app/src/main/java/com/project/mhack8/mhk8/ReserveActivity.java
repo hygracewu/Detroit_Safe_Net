@@ -11,73 +11,47 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import database.DatabaseHelper;
+import database.DatabaseModel;
 
 //import android.os.PersistableBundle;
 
 public class ReserveActivity extends CommonActivity {
 
-    public final int pageid = 1;
-    private ArrayList<Reservation> reservesList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    private ReservesAdapter rAdapter;
-    private int prevPageId;
-    public String []str = new String[6];
-    //private DBHandler dbHandler;
+    DatabaseHelper helpher;
+    List<DatabaseModel> dbList;
+    RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    public int prevPageId=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reserve);
-
         Intent intent = getIntent();
         prevPageId = intent.getIntExtra("page id", CommonActivity.PAGE_ID);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        rAdapter = new ReservesAdapter(reservesList);
+        helpher = new DatabaseHelper(this);
+        dbList= new ArrayList<DatabaseModel>();
+        dbList = helpher.getDataFromDB();
 
-        recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerView.setAdapter(rAdapter);
-        rAdapter.notifyDataSetChanged();
+        mRecyclerView = (RecyclerView)findViewById(R.id.recycleview);
 
-        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                Reservation reserve = reservesList.get(position);
-                str[0] = reserve.getUsername();
-                str[1] = reserve.getStart();
-                str[2] = reserve.getDestination();
-                str[3] = reserve.getDate();
-                str[4] = reserve.getTime();
-                str[5] = String.valueOf(position);
+        mRecyclerView.setHasFixedSize(true);
 
-                Toast.makeText(getApplicationContext(), reserve.getPath() + " is selected!", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ReserveActivity.this, ResponseActivity.class);
-                intent.putExtra("info", str);
-                startActivity(intent);
-            }
+        // use a linear layout manager
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
 
-            @Override
-            public void onLongClick(View view, int position) {
+        // specify an adapter (see also next example)
+        mAdapter = new RecyclerAdapter(this,dbList);
+        mRecyclerView.setAdapter(mAdapter);
 
-            }
-        }));
-
-        prepareReserveData();
-    }
-
-    private void prepareReserveData() {
-        Reservation reserve = new Reservation("a", "b", "Grace", "10/07/16", "12:00");
-        reservesList.add(reserve);
-        reserve = new Reservation("c", "d", "Eric", "10/08/16", "18:00");
-        reservesList.add(reserve);
-
-        rAdapter.notifyDataSetChanged();
     }
 
 }
