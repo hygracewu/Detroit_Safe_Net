@@ -9,7 +9,7 @@ public class DatabaseModel {
     private String destination;
     private String date;
     private String time;
-    private Boolean confirmed;
+    private String responsed;
 
     public String getName() {
         return name;
@@ -55,11 +55,11 @@ public class DatabaseModel {
         return "from "+departure+" to "+destination;
     }
 
-    public Boolean getConfirmed() {
-        return confirmed;
+    public String getResponsed() {
+        return responsed;
     }
 
-    public void setConfirmed(Boolean confirmed) {
-        this.confirmed = confirmed;
+    public void setResponsed(String responsed) {
+        this.responsed = responsed;
     }
 }

@@ -8,28 +8,28 @@ android:orientation="vertical">
 
 
 <TextView
-    android:id="@+id/name"
+    android:id="@+id/cfname"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="name"/>
 
 <TextView
-    android:id="@+id/departure"
+    android:id="@+id/cfdeparture"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Departure"/>
 <TextView
-    android:id="@+id/destination"
+    android:id="@+id/cfdestination"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Destination"/>
 <TextView
-    android:id="@+id/date"
+    android:id="@+id/cfdate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Date"/>
 <TextView
-    android:id="@+id/time"
+    android:id="@+id/cftime"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="Time"/>
@@ -40,10 +40,10 @@ android:orientation="vertical">
     android:layout_marginTop="10dp"
     android:orientation="horizontal">
     <Button
-        android:id="@+id/btnConfirm"
+        android:id="@+id/cfbtnConfirm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Ok!"
+        android:text="Confirm"
         android:textColor="#ffffff"
         android:background="@color/colorPrimary"/>
 </LinearLayout>
@@ -53,7 +53,7 @@ android:orientation="vertical">
     android:layout_marginTop="10dp"
     android:orientation="horizontal">
     <Button
-        android:id="@+id/btnCancel"
+        android:id="@+id/cfbtnCancel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Cancel"

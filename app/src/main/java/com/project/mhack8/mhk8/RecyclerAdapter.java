@@ -3,6 +3,7 @@ package com.project.mhack8.mhk8;
 /**
  * Created by Grace on 2016/10/8.
  */
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -60,6 +61,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.path.setText(dbList.get(position).getPath());
         holder.date.setText(dbList.get(position).getDate());
         holder.time.setText(dbList.get(position).getTime());
+        String responsed = dbList.get(position).getResponsed();
+        //if(responsed.equals(("true"))){
+        //    holder.path.setTextColor(Color.RED);
+        //}
     }
 
     @Override

@@ -1,14 +1,18 @@
 package com.project.mhack8.mhk8;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import database.DatabaseHelper;
 import database.DatabaseModel;
 
@@ -16,12 +20,12 @@ import database.DatabaseModel;
  * Created by eric on 2016/10/9.
  */
 
-public class confirmActivity extends CommonActivity {
+public class ConfirmActivity extends CommonActivity {
 
     DatabaseHelper helpher;
     List<DatabaseModel> dbList;
     int position;
-    String tvname,tvdeparture,tvdestination,tvdate,tvtime;
+    TextView tvname,tvdeparture,tvdestination,tvdate,tvtime;
     Button btnConfirm,btnCancel;
     private int prevPageId;
 
@@ -29,36 +33,59 @@ public class confirmActivity extends CommonActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_response);
         Intent intent = getIntent();
-        String[] info = intent.getStringArrayExtra("info");
+        Bundle bundle = intent.getExtras();
+        position = bundle.getInt("position");
 
-        tvname = info[0];
-        tvdeparture = info[1];
-        tvdestination = info[2];
-        tvdate = info[3];
-        tvtime = info[4];
-        /*
+        tvname = ((TextView)findViewById(R.id.cfname));
+        tvdeparture =(TextView)findViewById(R.id.cfdeparture);
+        tvdestination =(TextView)findViewById(R.id.cfdestination);
+        tvdate =(TextView)findViewById(R.id.cfdate);
+        tvtime =(TextView)findViewById(R.id.cftime);
+
+
         helpher = new DatabaseHelper(this);
         dbList= new ArrayList<DatabaseModel>();
         dbList = helpher.getDataFromDB();
-        */
-
-        btnConfirm  =(Button)findViewById(R.id.btnConfirm);
-        btnCancel =(Button)findViewById(R.id.btnCancel);
+        btnConfirm  =(Button)findViewById(R.id.cfbtnConfirm);
+        String text="Confirm";
+        btnConfirm.setText(text);
+        btnCancel =(Button)findViewById(R.id.cfbtnCancel);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(confirmActivity.this, ReserveActivity.class));
+                // Toast.makeText(ReserveActivity.this, "Thank you for your response", Toast.LENGTH_LONG);
+                //dbList.get(position).setResponsed("true");
+                startActivity(new Intent(ConfirmActivity.this, ListActivity.class));
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(confirmActivity.this, ReserveActivity.class));
+                // Toast.makeText(ResponseActivity.this, "Request Declined", Toast.LENGTH_LONG);
+                startActivity(new Intent(ConfirmActivity.this, ListActivity.class));
             }
         });
 
+        if(dbList.size()>0){
+            String name= dbList.get(position).getName();
+            String departure=dbList.get(position).getDeparture();
+            String destination=dbList.get(position).getDestination();
+            String date=dbList.get(position).getDate();
+            String time=dbList.get(position).getTime();
+            tvname.setText(name);
+            tvdeparture.setText(departure);
+            tvdestination.setText(destination);
+            tvdate.setText(date);
+            tvtime.setText(time);
+        }
+
+        //Toast.makeText(ResponseActivity.this, dbList.toString(), Toast.LENGTH_LONG);
     }
 
 }
+
+
+

@@ -22,7 +22,7 @@ public class PostActivity extends CommonActivity{
     TextView etName,etDeparture,etDestination,etDate,etTime;
     Button btnSubmit,btngetdata,btncan;
     DatabaseHelper helpher;
-    String name, departure, destination, date, time;
+    String name, departure, destination, date, time, responsed;
     List<DatabaseModel> dbList;
 
     @Override
@@ -36,6 +36,7 @@ public class PostActivity extends CommonActivity{
         destination="";
         date="";
         time="";
+        responsed="false";
 
         etName = (TextView)findViewById(R.id.etName);
         etDeparture = (TextView)findViewById(R.id.etDeparture);

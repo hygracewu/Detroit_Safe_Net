@@ -80,6 +80,12 @@ public class CommonActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
 
+            case 2: intent = new Intent(this, ListActivity.class);
+                intent.putExtra("page id", PAGE_ID);
+                startActivity(intent);
+                break;
+
+
             case 4: intent = new Intent(this, ProfileActivity.class);
                 intent.putExtra("page id", PAGE_ID);
                 startActivity(intent);
