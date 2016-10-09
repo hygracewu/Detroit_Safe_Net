@@ -61,7 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.path.setText(dbList.get(position).getPath());
         holder.date.setText(dbList.get(position).getDate());
         holder.time.setText(dbList.get(position).getTime());
-        String responsed = dbList.get(position).getResponsed();
+        //String responsed = dbList.get(position).getResponsed();
         //if(responsed.equals(("true"))){
         //    holder.path.setTextColor(Color.RED);
         //}

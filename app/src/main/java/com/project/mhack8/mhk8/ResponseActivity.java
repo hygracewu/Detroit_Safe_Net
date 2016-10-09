@@ -55,7 +55,7 @@ public class ResponseActivity extends CommonActivity {
         @Override
         public void onClick(View v) {
                 // Toast.makeText(ReserveActivity.this, "Thank you for your response", Toast.LENGTH_LONG);
-                dbList.get(position).setResponsed("true");
+                //dbList.get(position).setResponsed("true");
                 startActivity(new Intent(ResponseActivity.this, ReserveActivity.class));
             }
         });
