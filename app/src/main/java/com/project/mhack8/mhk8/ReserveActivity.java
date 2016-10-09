@@ -34,6 +34,9 @@ public class ReserveActivity extends CommonActivity {
         Intent intent = getIntent();
         prevPageId = intent.getIntExtra("page id", CommonActivity.PAGE_ID);
 
+        helpher = new DatabaseHelper(ReserveActivity.this);
+        helpher.insertIntoDB("Eric", "Detroit", "Ann Arbor", "10.09", "17:30");
+        helpher.insertIntoDB("Grace", "Ann Arbor", "Detroit", "10.10", "17:30");
 
         helpher = new DatabaseHelper(this);
         dbList= new ArrayList<DatabaseModel>();

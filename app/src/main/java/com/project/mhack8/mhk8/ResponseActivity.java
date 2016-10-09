@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import database.DatabaseHelper;
@@ -34,7 +35,8 @@ public class ResponseActivity extends CommonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_response);
         Intent intent = getIntent();
-        String[] info = intent.getStringArrayExtra("info");
+        Bundle bundle = intent.getExtras();
+        position = bundle.getInt("position");
 
         tvname = ((TextView)findViewById(R.id.name));
         tvdeparture =(TextView)findViewById(R.id.departure);
@@ -42,46 +44,45 @@ public class ResponseActivity extends CommonActivity {
         tvdate =(TextView)findViewById(R.id.date);
         tvtime =(TextView)findViewById(R.id.time);
 
-        tvname.setText("username: "+info[0]);
-        tvdeparture.setText("departure: "+info[1]);
-        tvdestination.setText("destination: "+info[2]);
-        tvdate.setText("date: "+info[3]);
-        tvtime.setText("time: "+info[4]);
-        int position = Integer.valueOf(info[5]);
 
-        /*
         helpher = new DatabaseHelper(this);
         dbList= new ArrayList<DatabaseModel>();
         dbList = helpher.getDataFromDB();
-        */
-
         btnConfirm  =(Button)findViewById(R.id.btnConfirm);
         btnCancel =(Button)findViewById(R.id.btnCancel);
         btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+        @Override
+        public void onClick(View v) {
+                // Toast.makeText(ReserveActivity.this, "Thank you for your response", Toast.LENGTH_LONG);
                 startActivity(new Intent(ResponseActivity.this, ReserveActivity.class));
-                /*
-                TextView text = (TextView) findViewById(R.id.toast);
-                text.setText("Response sent");
-                Toast toast = new Toast(getApplicationContext());
-                toast.show();
-                */
             }
         });
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Toast.makeText(ResponseActivity.this, "Request Declined", Toast.LENGTH_LONG);
                 startActivity(new Intent(ResponseActivity.this, ReserveActivity.class));
-                /*
-                TextView text = (TextView) findViewById(R.id.toast);
-                text.setText("Request declined");
-                Toast toast = new Toast(getApplicationContext());
-                toast.show();
-                */
             }
         });
 
+        if(dbList.size()>0){
+            String name= dbList.get(position).getName();
+            String departure=dbList.get(position).getDeparture();
+            String destination=dbList.get(position).getDestination();
+            String date=dbList.get(position).getDate();
+            String time=dbList.get(position).getTime();
+            tvname.setText(name);
+            tvdeparture.setText(departure);
+            tvdestination.setText(destination);
+            tvdate.setText(date);
+            tvtime.setText(time);
+        }
+
+        Toast.makeText(ResponseActivity.this, dbList.toString(), Toast.LENGTH_LONG);
     }
 
 }
+
+
+
