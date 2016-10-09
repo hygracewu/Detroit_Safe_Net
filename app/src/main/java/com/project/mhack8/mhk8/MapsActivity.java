@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,10 +39,11 @@ import Modules.DirectionFinderListener;
 import Modules.Route;
 import android.util.Log;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, DirectionFinderListener {
+public class MapsActivity extends CommonActivity implements OnMapReadyCallback, DirectionFinderListener {
 
     private GoogleMap mMap;
     private Button btnFindPath;
+    private ImageView registerBtn;
     private EditText etOrigin;
     private EditText etDestination;
     private Spinner modeSpinner;
@@ -51,6 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ProgressDialog progressDialog;
     private static final String TAG="MyActivity";
     public int prevPageId=0;
+    public String [] info = new String[2];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         btnFindPath = (Button) findViewById(R.id.btnFindPath);
         etOrigin = (EditText) findViewById(R.id.etOrigin);
         etDestination = (EditText) findViewById(R.id.etDestination);
+        registerBtn = (ImageView) findViewById(R.id.register);
         modeSpinner = (Spinner) findViewById(R.id.modeSpinner);
         String[] mode_list = {"driving", "walking", "bicycling", "transit"};
 
@@ -107,10 +111,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng hcmus = new LatLng(10.762963, 106.682394);
+        LatLng hcmus = new LatLng(42.2774844,-83.7377632);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hcmus, 18));
         originMarkers.add(mMap.addMarker(new MarkerOptions()
-                .title("Đại học Khoa học tự nhiên")
+                .title("University of Michigan")
                 .position(hcmus)));
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -151,6 +155,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+
+
     @Override
     public void onDirectionFinderSuccess(List<Route> routes) {
         mMap.clear();
@@ -159,61 +165,71 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         originMarkers = new ArrayList<>();
         destinationMarkers = new ArrayList<>();
         originMarkers.add(mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
-                .title(routes.get(0).startAddress)
-                .position(routes.get(0).startLocation)));
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
+            .title(routes.get(0).startAddress)
+            .position(routes.get(0).startLocation)));
         destinationMarkers.add(mMap.addMarker(new MarkerOptions()
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
-                .title(routes.get(routes.size()-1).endAddress)
-                .position(routes.get(routes.size()-1).endLocation)));
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
+            .title(routes.get(routes.size() - 1).endAddress)
+            .position(routes.get(routes.size() - 1).endLocation)));
+
         for (Route route : routes) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(route.startLocation, 16));
             ((TextView) findViewById(R.id.tvDuration)).setText(route.duration.text);
             ((TextView) findViewById(R.id.tvDistance)).setText(route.distance.text);
 
-            /*originMarkers.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.start_blue))
-                    .title(route.startAddress)
-                    .position(route.startLocation)));
-            destinationMarkers.add(mMap.addMarker(new MarkerOptions()
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.end_green))
-                    .title(route.endAddress)
-                    .position(route.endLocation)));*/
+        PolylineOptions polylineOptions = new PolylineOptions().
+        geodesic(true).
+        color(Color.BLUE).
+        width(10);
 
-            PolylineOptions polylineOptions = new PolylineOptions().
-                    geodesic(true).
-                    color(Color.BLUE).
-                    width(10);
+        for (int i = 0; i < route.points.size(); i++){
+        //change the color
+                        //Double tmp = new Double(route.c_tire);
+                        //Log.d(TAG,tmp.toString());
+                        if (route.c_tire >=30) {
+                            polylineOptions.add(route.points.get(i)).color(Color.RED);
 
-            // for (int i = 0; i < route.points.size(); i++){
-            //change the color
-            //Double tmp = new Double(route.c_tire);
-            //Log.d(TAG,tmp.toString());
-            if (route.c_tire >=30) {
-                //polylineOptions.add(route.points.get(0)).color(Color.RED);
-                Polyline line = mMap.addPolyline(new PolylineOptions()
-                        .add( route.startLocation, route.endLocation)
-                        .width(10)
-                        .color(Color.RED));
-            }
-            else if (route.c_tire >=20) {
-                //polylineOptions.add(route.points.get(0)).color(Color.YELLOW);
-                Polyline line = mMap.addPolyline(new PolylineOptions()
-                        .add( route.startLocation, route.endLocation)
-                        .width(10)
-                        .color(Color.YELLOW));
-            }
-            else {
-                //polylineOptions.add(route.points.get(0)).color(Color.BLUE);
-                Polyline line = mMap.addPolyline(new PolylineOptions()
-                        .add( route.startLocation, route.endLocation)
-                        .width(10)
-                        .color(Color.BLUE));
-            }
-            //   }
+                   /* Polyline line = mMap.addPolyline(new PolylineOptions()
+                                        .add( route.startLocation, route.endLocation)
+                                        .width(10)
+                                        .color(Color.RED));
+                                        */
+                        }
+                        else if (route.c_tire >=20) {
+                            polylineOptions.add(route.points.get(i)).color(Color.YELLOW);
+                    /*Polyline line = mMap.addPolyline(new PolylineOptions()
+                                        .add( route.startLocation, route.endLocation)
+                                        .width(10)
+                                        .color(Color.YELLOW));
+                                        */
+                        }
+                        else {
+                            polylineOptions.add(route.points.get(i)).color(Color.BLUE);
+                    /*Polyline line = mMap.addPolyline(new PolylineOptions()
+                                            .add( route.startLocation, route.endLocation)
+                                            .width(10)
+                                            .color(Color.BLUE));
+                                            */
+                        }
+                    }
+                    polylinePaths.add(mMap.addPolyline(polylineOptions));
+                    polylineOptions=null;
+                    info[0] = route.startAddress;
+                    info[1] = route.endAddress;
+                    Log.v(info[0],info[1]);
 
-            //polylinePaths.add(mMap.addPolyline(polylineOptions));
+                    registerBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MapsActivity.this, PostActivity.class);
+                            intent.putExtra("info", info);
+                            startActivity(intent);
+
+                        }
+                    });
         }
     }
-
 }
+
+

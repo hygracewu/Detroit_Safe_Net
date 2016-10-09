@@ -2,6 +2,7 @@ package com.project.mhack8.mhk8;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import database.DatabaseHelper;
@@ -31,11 +33,18 @@ public class PostActivity extends CommonActivity{
         setContentView(R.layout.activity_main);
         dbList= new ArrayList<DatabaseModel>();
 
-        name="";
-        departure="";
-        destination="";
-        date="";
-        time="";
+        Intent intent = getIntent();
+        String [] info = intent.getStringArrayExtra("info");
+        Calendar c = Calendar.getInstance();
+        name="Eric";
+        departure = info[0];
+        destination = info[1];
+        Log.v("LOG:",info[0]);
+        Log.v("LOG:",info[1]);
+        Log.v("LOG:",name);
+
+        date= String.valueOf(c.get(Calendar.DATE));
+        time= String.valueOf(c.get(Calendar.HOUR))+" : "+String.valueOf(c.get(Calendar.MINUTE));
 
         etName = (TextView)findViewById(R.id.etName);
         etDeparture = (TextView)findViewById(R.id.etDeparture);
@@ -43,24 +52,25 @@ public class PostActivity extends CommonActivity{
         etDate = (TextView)findViewById(R.id.etDate);
         etTime = (TextView)findViewById(R.id.etTime);
 
-        etName.setText(name);
-        etDeparture.setText(departure);
-        etDestination.setText(destination);
-        etDate.setText(date);
-        etTime.setText(time);
+
+        //etName.setText(s);
+        //etDeparture.setText(departure);
+        //etDestination.setText(destination);
+        //etDate.setText(date);
+        //etTime.setText(time);
 
         btngetdata =(Button)findViewById(R.id.btngetdata);
         btngetdata.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PostActivity.this, ReserveActivity.class));
+                startActivity(new Intent(PostActivity.this, MapsActivity.class));
             }
         });
 
         btncan  =(Button)findViewById(R.id.btncan);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(PostActivity.this, ReserveActivity.class)); // back to map
+                startActivity(new Intent(PostActivity.this, MapsActivity.class)); // back to map
             }
 
         });

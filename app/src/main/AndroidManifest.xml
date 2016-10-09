@@ -25,6 +25,8 @@
         <activity   android:name="com.project.mhack8.mhk8.ReserveActivity" ></activity>
         <activity   android:name="com.project.mhack8.mhk8.confirmActivity" ></activity>
         <activity   android:name="com.project.mhack8.mhk8.ResponseActivity" ></activity>
+        <activity   android:name="com.project.mhack8.mhk8.ProfileActivity" ></activity>
+        <activity   android:name="com.project.mhack8.mhk8.PostActivity" ></activity>
     </application>
 
 </manifest>

@@ -252,7 +252,6 @@ public class DirectionFinder {
         }
         return sum;
     }
-
     private void parseJSon(String data) throws JSONException {
         if (data == null)    return;
         List<Route> routes = new ArrayList<Route>();
@@ -272,10 +271,11 @@ public class DirectionFinder {
             JSONArray J_step=jsonLeg.getJSONArray("steps");
             for(int j = 0; j < J_step.length(); j++){
                 JSONObject jsonStep = J_step.getJSONObject(j);
-                jsonDistance = jsonStep.getJSONObject("distance");
-                jsonDuration = jsonStep.getJSONObject("duration");
+                //jsonDistance = jsonStep.getJSONObject("distance");
+                //jsonDuration = jsonStep.getJSONObject("duration");
                 jsonEndLocation = jsonStep.getJSONObject("end_location");
                 jsonStartLocation = jsonStep.getJSONObject("start_location");
+                JSONObject jsonPolyline=jsonStep.getJSONObject("polyline");
                 Route route = new Route();
                 route.distance = new Distance(jsonDistance.getString("text"), jsonDistance.getInt("value"));
                 route.duration = new Duration(jsonDuration.getString("text"), jsonDuration.getInt("value"));
@@ -283,7 +283,7 @@ public class DirectionFinder {
                 route.startAddress = jsonLeg.getString("start_address");
                 route.startLocation = new LatLng(jsonStartLocation.getDouble("lat"), jsonStartLocation.getDouble("lng"));
                 route.endLocation = new LatLng(jsonEndLocation.getDouble("lat"), jsonEndLocation.getDouble("lng"));
-                route.points = decodePolyLine(overview_polylineJson.getString("points"));
+                route.points = decodePolyLine(jsonPolyline.getString("points"));
                 route.c_tire=computeCrimeTier(crime_data.crime,crime_data.w,route.startLocation,route.endLocation);
                 routes.add(route);
             }
@@ -293,6 +293,7 @@ public class DirectionFinder {
 
         listener.onDirectionFinderSuccess(routes);
     }
+
 
     private List<LatLng> decodePolyLine(final String poly) {
         int len = poly.length();
