@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical">
+
+
+<TextView
+    android:id="@+id/name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="name"/>
+
+<TextView
+    android:id="@+id/departure"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Departure"/>
+<TextView
+    android:id="@+id/destination"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Destination"/>
+<TextView
+    android:id="@+id/date"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Date"/>
+<TextView
+    android:id="@+id/time"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Time"/>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Confirm Registration"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"/>
+</LinearLayout>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Cancel"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"/>
+</LinearLayout>
+
+</LinearLayout>

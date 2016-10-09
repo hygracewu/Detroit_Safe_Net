@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity   android:name="com.project.mhack8.mhk8.ReserveActivity" ></activity>
+        <activity   android:name="com.project.mhack8.mhk8.confirmActivity" ></activity>
     </application>
 
 </manifest>

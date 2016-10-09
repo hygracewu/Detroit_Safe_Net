@@ -15,10 +15,13 @@ import java.util.ArrayList;
 //import android.os.PersistableBundle;
 
 public class ReserveActivity extends CommonActivity {
+
+    public final int pageid = 1;
     private ArrayList<Reservation> reservesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ReservesAdapter rAdapter;
     private int prevPageId;
+    public String []str = new String[5];
     //private DBHandler dbHandler;
 
     @Override
@@ -46,7 +49,16 @@ public class ReserveActivity extends CommonActivity {
             @Override
             public void onClick(View view, int position) {
                 Reservation reserve = reservesList.get(position);
+                str[0] = reserve.getUsername();
+                str[1] = reserve.getStart();
+                str[2] = reserve.getDestination();
+                str[3] = reserve.getDate();
+                str[4] = reserve.getTime();
+
                 Toast.makeText(getApplicationContext(), reserve.getPath() + " is selected!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ReserveActivity.this, ResponseActivity.class);
+                intent.putExtra("info", str);
+                startActivity(intent);
             }
 
             @Override
