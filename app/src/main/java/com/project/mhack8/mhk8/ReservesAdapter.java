@@ -4,6 +4,7 @@ package com.project.mhack8.mhk8;
  * Created by Grace on 2016/10/8.
  */
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,7 @@ public class ReservesAdapter extends RecyclerView.Adapter<ReservesAdapter.MyView
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.reserve_list_row, parent, false);
-
+        Log.v("GGG:", reservesList.toString());
         return new MyViewHolder(itemView);
     }
 

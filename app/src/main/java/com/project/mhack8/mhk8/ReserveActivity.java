@@ -1,20 +1,19 @@
 package com.project.mhack8.mhk8;
 
 import android.os.Bundle;
-//import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+//import android.os.PersistableBundle;
+
+public class ReserveActivity extends AppCompatActivity {
     private ArrayList<Reservation> reservesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ReservesAdapter rAdapter;
