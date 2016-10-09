@@ -44,8 +44,6 @@ public class PostActivity extends CommonActivity{
         etDate = (EditText)findViewById(R.id.etDate);
         etTime = (EditText)findViewById(R.id.etTime);
 
-
-
         btngetdata =(Button)findViewById(R.id.btngetdata);
         btngetdata.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +58,7 @@ public class PostActivity extends CommonActivity{
             public void onClick(View v) {
 
                 helpher = new DatabaseHelper(PostActivity.this);
-                helpher.insertIntoDB(name, departure, destination, date, time);
+                helpher.insertIntoDB(etName.getText().toString(), etDeparture.getText().toString(), etDestination.getText().toString(), etDate.getText().toString(), etTime.getText().toString());
 
                 etName.setText("");
                 etDeparture.setText("");

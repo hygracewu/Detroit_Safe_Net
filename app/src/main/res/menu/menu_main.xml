@@ -10,14 +10,14 @@
         android:icon="@drawable/home">
     </item>
     <item
-        android:id="@+id/sPost"
-        app:showAsAction="never"
-        android:title="Post">
-    </item>
-    <item
         android:id="@+id/sRequest"
         app:showAsAction="never"
         android:title="Request">
+    </item>
+    <item
+        android:id="@+id/sPost"
+        app:showAsAction="never"
+        android:title="Post">
     </item>
     <item
         android:id="@+id/sResponse"
