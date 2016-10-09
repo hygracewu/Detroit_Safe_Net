@@ -1,5 +1,6 @@
 package com.project.mhack8.mhk8;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -13,18 +14,20 @@ import java.util.ArrayList;
 
 //import android.os.PersistableBundle;
 
-public class ReserveActivity extends AppCompatActivity {
+public class ReserveActivity extends CommonActivity {
     private ArrayList<Reservation> reservesList = new ArrayList<>();
     private RecyclerView recyclerView;
     private ReservesAdapter rAdapter;
+    private int prevPageId;
     //private DBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_reserve);
+
+        Intent intent = getIntent();
+        prevPageId = intent.getIntExtra("page id", CommonActivity.PAGE_ID);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -35,18 +38,7 @@ public class ReserveActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //dbHandler = new DBHandler(MainActivity.this);
 
-        /**
-                * CRUD Operations
-                * */
-        // Inserting Contacts
-        //Log.e("Insert: ", "Inserting...");
-        //dbHandler.addUser(new Reservation("a", "b", "Grace", "10/07/16", "12:00"));
-        //dbHandler.addUser(new Reservation("c", "d", "Eric", "10/08/16", "18:00"));
-        // Reading all contacts
-        //Log.d("Reading: ", "reading contacts..");
-        //reservesList = dbHandler.getAllUsers();
         recyclerView.setAdapter(rAdapter);
         rAdapter.notifyDataSetChanged();
 
